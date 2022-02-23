@@ -3,6 +3,7 @@
 #include <string>
 #include <thread>
 #include <cstdlib>
+#include <fstream>
 #include <threadpoolapiset.h>
 
 namespace fs = std::filesystem;
@@ -14,6 +15,10 @@ int main()
     int txt_count = 0;
     int c_and_cpp_count = 0;
     int h_count = 0;
+
+    int cpp_lines = 0;
+    int h_lines = 0;
+    int txt_lines = 0;
 
     std::cout << fs::current_path() << std::endl;
 
@@ -28,15 +33,46 @@ int main()
 
         if((string_path.find(".cpp") != std::string::npos) || (string_path.find(".c") != std::string::npos)){
             c_and_cpp_count++;
+            std::ifstream file_cpp;
+
+            file_cpp.open(string_path, std::fstream::in);
+            std::string read;
+            while(file_cpp >> read){
+                cpp_lines++;
+            }
+            read.clear();
+
+            std::cout << "c/cpp lines: " << cpp_lines << std::endl;
+
         }
         if((string_path.find(".hpp") != std::string::npos) || (string_path.find(".h") != std::string::npos)){
             h_count++;
             std::cout << "jestemtu" << std::endl;
             std::cout << "hpp: " << h_count << std::endl;
+
+            std::ifstream file_h;
+
+            file_h.open(string_path, std::fstream::in);
+            std::string read;
+            while(file_h >> read){
+                h_lines++;
+            }
+
+            std::cout << "h lines: " << h_lines << std::endl;
+
         }
         if(string_path.find(".txt") != std::string::npos){
             txt_count++;
             std::cout << "txtp: " << txt_count << std::endl;
+
+            std::ifstream file_txt;
+
+            file_txt.open(string_path, std::fstream::in);
+            std::string read;
+            while(file_txt >> read){
+                txt_lines++;
+            }
+            std::cout << "txt lines: " << txt_lines << std::endl;
 
         }
         if(path.is_directory()){
