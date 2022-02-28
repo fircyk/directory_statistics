@@ -53,13 +53,12 @@ void go_through_directories(){
             }
             read.clear();
 
-            std::cout << "c/cpp lines: " << cpp_lines << std::endl;
+
 
         }
         if((string_path.find(".hpp") != std::string::npos) || (string_path.find(".h") != std::string::npos)){
             h_count++;
-            std::cout << "jestemtu" << std::endl;
-            std::cout << "hpp: " << h_count << std::endl;
+
 
             std::ifstream file_h;
 
@@ -72,12 +71,12 @@ void go_through_directories(){
                 }
             }
 
-            std::cout << "h lines: " << h_lines << std::endl;
+
 
         }
         if(string_path.find(".txt") != std::string::npos){
             txt_count++;
-            std::cout << "txtp: " << txt_count << std::endl;
+
 
             std::ifstream file_txt;
 
@@ -89,7 +88,7 @@ void go_through_directories(){
                     empty_lines++;
                 }
             }
-            std::cout << "txt lines: " << txt_lines << std::endl;
+
 
         }
         if(path.is_directory()){
@@ -110,12 +109,15 @@ void go_through_directories(){
 void display_data(){
 
     std::cout << work_path << std::endl;
-    std::cout << "cpp files: " << c_and_cpp_count << std::endl;
+    std::cout << "c and cpp files: " << c_and_cpp_count << std::endl;
     std::cout << "h files: " << h_count << std::endl;
     std::cout << "txt files: " << txt_count << std::endl;
     std::cout << "directories: " << dir_count << std::endl;
 
     std::cout << "empty lines: " << empty_lines << std::endl;
     std::cout << "total lines: " << txt_lines+cpp_lines+h_lines << std::endl;
+    std::cout << "h lines: " << h_lines << std::endl;
+    std::cout << "c and cpp lines: " << cpp_lines << std::endl;
+    std::cout << "txt lines: " << txt_lines << std::endl;
 
 }
